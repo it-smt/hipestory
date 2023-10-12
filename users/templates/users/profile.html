@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/profile.style.css' %}">{% endblock %}
+
+{% block content %}
+    <nav class="navigation">
+        <ul class="navigation__list">
+            <li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+            <li>Профиль</li>
+        </ul>
+    </nav>
+    {% if messages %}
+        {% for m in messages %}
+            <div class="alert alert-{{ m.tags }}">{{ m }}</div>
+        {% endfor %}
+    {% endif %}
+    <h1 class="content__title">Профиль</h1>
+    <hr>
+    <div class="content__info info">
+        <div class="info__row">
+            <div id="profileImage" class="info__image">
+                <img src="
+
+                        {% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'img/profile/default-avatar.png' %}{% endif %}"
+                     alt="фото профиля">
+                <div id="profileImageMenu" class="info__image-function">
+                    <a href="{% url 'users:change_avatar' %}" id="imageChangeButton"
+                       class="info__image-change">Изменить</a>
+                    <a href="{% url 'users:delete_avatar' %}" id="imageDeleteButton"
+                       class="info__image-delete">Удалить</a>
+                </div>
+            </div>
+            <div class="info__body">
+                <h2 class="info__full-name">{{ user.get_full_name }}</h2>
+                <p class="info__age">Возраст: <span>{{ user.age }}</span></p>
+                <p class="info__gender">Пол: <span>{{ user.gender }}</span></p>
+                <p class="info__mail">Почта: <span>{{ user.email }}</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="content__buttons">
+        {# <a href="" class="content__button-change-password">Сменить пароль</a>#}
+        {# <a href="" class="content__button-change-data">Изменить данные</a>#}
+        <a href="{% url 'users:new_story' %}" class="content__button">Предложить историю</a>
+    </div>
+{% endblock %}

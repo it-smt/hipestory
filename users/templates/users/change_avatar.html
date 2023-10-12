@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Изменение аватарки{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/change-avatar.style.css' %}">{% endblock %}
+
+{% block content %}
+    <nav class="navigation">
+        <ul class="navigation__list">
+            <li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+            <li><a href="{% url 'users:profile' %}" class="navigation__link">Профиль</a></li>
+            <li>Изменение аватарки</li>
+        </ul>
+    </nav>
+    <h1 class="content__title">Изменение аватарки</h1>
+    <hr>
+    <form action="{% url 'users:add_avatar' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {% for f in form %}
+            {{ f }}
+            <label for="{{ f.id_for_label }}" id="inputFileLabel"
+                   class="content__input-file-label"><span>{{ f.label }}</span></label>
+        {% endfor %}
+        <div class="content__buttons">
+            <button type="submit" class="content__next">Далее</button>
+            <a href="{% url 'users:profile' %}" class="content__back">Назад</a>
+        </div>
+    </form>
+{% endblock %}

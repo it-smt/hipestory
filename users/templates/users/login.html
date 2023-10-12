@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Вход{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.style.css' %}">{% endblock %}
+
+{% block content %}
+    <nav class="navigation">
+        <ul class="navigation__list">
+            <li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+            <li>Вход</li>
+        </ul>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}"
+                 role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if form.errors %}
+        <div class="alert alert-danger">Неверный логин или пароль, попробуйте еще раз.</div>
+    {% endif %}
+    <h1 class="content__title">Вход</h1>
+    <hr>
+    <form method="post" class="content__form form" novalidate>
+        {% csrf_token %}
+        {% for f in form %}
+            <label class="form__label"><span>{{ f.label }}</span>{{ f }}</label>
+        {% endfor %}
+        <input type="submit" class="form__button" value="Войти">
+    </form>
+{% endblock %}

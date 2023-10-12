@@ -1,0 +1,43 @@
+.content__input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.content__input-file-label {
+  cursor: pointer;
+  margin: 20px 0;
+  display: inline-block;
+  padding: 20px 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: #012c6d;
+}
+.content__input-file-label:hover {
+  background-color: #0048b4;
+}
+.content__input-file-label span {
+  display: block;
+}
+.content__buttons {
+  display: flex;
+  align-items: center;
+}
+.content__next, .content__back {
+  padding: 10px 20px;
+  font-size: 20px;
+  line-height: normal;
+  color: #fff;
+  border-radius: 15px;
+  background-color: #012c6d;
+}
+.content__next:hover, .content__back:hover {
+  background-color: #0048b4;
+}
+.content__next {
+  margin: 0 20px 0 0;
+}

@@ -1,0 +1,73 @@
+.content__column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content__card {
+    margin: 20px 0 0 0;
+}
+
+.card {
+    max-width: 900px;
+    width: 100%;
+    border-radius: 15px;
+    border: 1px solid #b6b6b6;
+}
+
+.card__title {
+    display: block;
+    padding: 15px 20px;
+    font-size: 20px;
+    line-height: normal;
+    color: #000;
+    border-bottom: 1px solid #b6b6b6;
+    background-color: #eeeeee;
+    border-radius: 15px 15px 0 0;
+}
+
+.card__text {
+    padding: 15px 20px;
+    line-height: 150%;
+}
+
+.card__button {
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 20px 15px 20px;
+    padding: 10px 15px;
+    background-color: #241b8e;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.card__reactions {
+    display: flex;
+    align-items: center;
+}
+
+.card__dislike,
+.card__like {
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-position: center center;
+    cursor: pointer;
+}
+
+.card__like {
+    background-image: url(../../img/feed-stories/icons/like.svg);
+    margin: 0 20px 0 0;
+}
+
+.card__like._active {
+    background-image: url(../../img/feed-stories/icons/like-active.svg);
+}
+
+.card__dislike {
+    background-image: url(../../img/feed-stories/icons/dislike.svg);
+}
+
+.card__dislike._active {
+    background-image: url(../../img/feed-stories/icons/dislike-active.svg);
+}

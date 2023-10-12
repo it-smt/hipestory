@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Выход{% endblock %}
+
+{% block content %}
+    <nav class="navigation">
+        <ul class="navigation__list">
+            <li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+            <li>Выход</li>
+        </ul>
+    </nav>
+    <h1 class="content__title">Выход</h1>
+    <hr>
+    <p class="content__text" style="margin: 20px 0 0 0;">Выход успешно выполнен.</p>
+{% endblock %}

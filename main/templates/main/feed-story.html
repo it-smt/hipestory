@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ story.title }} | Лента{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/feed-story.styles.css' %}">{% endblock %}
+
+{% block content %}
+    <nav class="navigation">
+        <ul class="navigation__list">
+            <li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+            <li><a href="{% url 'main:feed_stories' %}" class="navigation__link">Лента</a></li>
+            <li>{{ story.title|truncatechars:15 }}</li>
+        </ul>
+    </nav>
+    {% if messages %}
+    	{% for m in messages %}
+    		<div class="alert alert-{{ m.tags }}">{{ m }}</div>
+    	{% endfor %}
+    {% endif %}
+    <h1 class="content__title">{{ story.title }}</h1>
+    <hr>
+    <p class="content__body">
+        {% for b in story.get_formatted_body %}
+            {{ b }}<br>
+        {% endfor %}
+    </p>
+    <div class="content__comments comments">
+        <h2 class="comments__title">Комментарии</h2>
+        <hr>
+        {% if user.is_authenticated %}
+            <form method="post" class="comments__form">
+                {% csrf_token %}
+                {{ form.body }}
+                <button class="comments__button" type="submit"><img
+                        src="{% static 'img/feed-story/icons/send-icon.png' %}"
+                        alt=""></button>
+            </form>
+            {% else %}
+            <p class="comments__form-text">Для того, чтобы оставить комментарий, нужно <a href="{% url 'users:login' %}">войти</a> в свой аккаунт!</p>
+        {% endif %}
+        <div class="comments__column">
+            <p class="comments__text">Всего комментариев: {{ story.comments.all|length }}</p>
+            {% for comment in story.comments.all %}
+                <div class="comments__comment comment">
+                    <div class="comment__user-info"><span
+                            class="comment__username"><img src="
+
+
+
+                            {% if comment.user.avatar %}{{ comment.user.avatar.url }}{% else %}{% static 'img/profile/default-avatar.png' %}{% endif %}"
+                                                           alt="">{{ comment.user.username }}</span><span
+                            class="comment__datetime">{{ comment.date }}</span></div>
+                    <div class="comment__body">
+                        {% for b in comment.get_formatted_body %}
+                            {{ b }}<br>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

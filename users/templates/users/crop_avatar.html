@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Изменение аватарки{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/cropper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/crop-avatar.style.css' %}">{% endblock %}
+
+{% block content %}
+    <nav class="navigation">
+        <ul class="navigation__list">
+            <li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+            <li><a href="{% url 'users:profile' %}" class="navigation__link">Профиль</a></li>
+            <li>Изменение аватарки</li>
+        </ul>
+    </nav>
+    <h1 class="content__title">Изменение аватарки</h1>
+    <hr>
+    {% if user.avatar %}
+        <div class="content__column">
+            <div class="content__crop-image">
+                <img src="{{ user.avatar.url }}" alt="Фото не выбрано" id="cutImage">
+            </div>
+            <form method="post" id="form" action="{% url 'users:crop_avatar' %}" enctype="multipart/form-data" class="content__buttons">
+                {% csrf_token %}
+                {{ form.hidden }}
+                <button type="button" id="cropButton" class="content__crop">Обрезать</button>
+                <a href="{% url 'users:profile' %}" class="content__cancel">Отмена</a>
+            </form>
+        </div>
+    {% else %}
+        <p style="margin: 20px 0 0 0;">Для того чтобы обрезать аватарку, нужно добавить ее</p>
+    {% endif %}
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/cropper.min.js' %}"></script>{% endblock %}

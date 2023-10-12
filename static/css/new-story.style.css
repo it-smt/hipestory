@@ -1,0 +1,38 @@
+.content__form {
+	margin: 20px 0 0 0;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form__label {
+	margin: 0 0 20px 0;
+	max-width: 800px;
+	min-width: 100%;
+}
+
+.form__label span {
+	display: block;
+	margin: 0 0 10px 10px;
+}
+
+.form__input {
+	display: block;
+	min-width: 100%;
+	background-color: #cde7f3ce;
+	border-radius: 10px;
+	padding: 10px 15px;
+	font-size: 16px;
+}
+
+.form__button {
+	cursor: pointer;
+	border-radius: 10px;
+	padding: 10px 15px;
+	background-color: #08005f;
+	color: #fff;
+	font-size: 20px;
+}

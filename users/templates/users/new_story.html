@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Новая история | Профиль{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/new-story.style.css' %}">
+{% endblock %}
+
+{% block content %}
+<nav class="navigation">
+	<ul class="navigation__list">
+		<li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+		<li><a href="{% url 'users:profile' %}" class="navigation__link">Профиль</a></li>
+		<li>Новая история</li>
+	</ul>
+</nav>
+<h1 class="content__title">Новая история</h1>
+<hr>
+<form method="post" class="content__form form">
+	{% for f in form %}
+	<label class="form__label">
+		{% csrf_token %}
+		<span>{{ f.label }}</span>
+		{{ f }}
+	</label>
+	{% endfor %}
+	<input type="submit" class="form__button" value="Отправить">
+</form>
+{% endblock %}

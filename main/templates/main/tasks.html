@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Задания{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/tasks.style.css' %}">{% endblock %}
+
+{% block content %}
+<nav class="navigation">
+    <ul class="navigation__list">
+        <li><a href="{% url 'main:index' %}" class="navigation__link">Главная</a></li>
+        <li>Задания</li>
+    </ul>
+</nav>
+<h1 class="content__title">Задания</h1>
+<hr>
+<div class="content__column">
+    {% for task in tasks %}
+    <div class="content__card card">
+        <div class="card__body">
+            <p class="card__title">{{ task.title }}</p>
+            <div class="card__text">{{ task.body|truncatechars:255 }}</div>
+            <a href="{% url 'main:task' id=task.pk %}" class="card__button">Подробнее</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

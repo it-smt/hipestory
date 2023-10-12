@@ -1,0 +1,31 @@
+.content__column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content__crop-image {
+  margin: 20px 0;
+}
+.content__crop-image img {
+  display: block;
+  max-height: 300px;
+  max-width: 300px;
+  min-width: 250px;
+  min-height: 250px;
+  width: 100%;
+}
+.content__buttons {
+  display: flex;
+  align-items: center;
+}
+.content__crop, .content__cancel {
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 15px;
+  font-size: 20px;
+  line-height: normal;
+  background-color: #012c6d;
+}
+.content__crop {
+  margin: 0 20px 0 0;
+}
