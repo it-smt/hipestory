@@ -6,7 +6,7 @@ from main.models import Story
 
 
 class AddAvatarForm(forms.Form):
-    avatar = forms.FileField(label='Добавить файл', required=False, widget=forms.FileInput(attrs={
+    avatar = forms.FileField(label='Добавить файл', widget=forms.FileInput(attrs={
         'class': 'content__input-file',
     }))
 
@@ -65,5 +65,7 @@ class NewStoryForm(forms.Form):
         'class': 'form__input'
     }))
     body = forms.CharField(label='Содержание', max_length=3000, widget=forms.Textarea(attrs={
-        'class': 'form__input'
+        'class': 'form__input',
+        'rows': 10,
+        'cols': 0
     }))
