@@ -13,6 +13,11 @@
             <li>Изменение аватарки</li>
         </ul>
     </nav>
+    {% if messages %}
+        {% for m in messages %}
+            <div class="alert alert-{{ m.tags }}">{{ m }}</div>
+        {% endfor %}
+    {% endif %}
     <h1 class="content__title">Изменение аватарки</h1>
     <hr>
     <form action="{% url 'users:add_avatar' %}" enctype="multipart/form-data" method="post">
