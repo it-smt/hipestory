@@ -17,6 +17,7 @@ class Story(models.Model):
 
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     slug = models.SlugField(max_length=255, verbose_name='Слаг', unique_for_date='created')
+    author = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE, related_name='stories')
     body = models.TextField(verbose_name='Содержание')
     created = models.DateField(verbose_name='Создано', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='Изменено', auto_now=True)
@@ -72,6 +73,7 @@ class Task(models.Model):
         PUBLISHED = 'PB', 'Опубликовано'
         DRAFT = 'DF', 'Черновик'
 
+    author = models.ForeignKey(to=User, verbose_name='Автор', on_delete=models.CASCADE, related_name='tasks')
     title = models.CharField(verbose_name='Заголовок', max_length=255)
     body = models.TextField(verbose_name='Содержание')
     created = models.DateTimeField(verbose_name='Создано', auto_now_add=True)
@@ -96,7 +98,8 @@ class Task(models.Model):
 
 class TaskCommentAnswer(models.Model):
     task = models.ForeignKey(verbose_name='Задание', to=Task, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE, related_name='task_comments')
+    user = models.ForeignKey(verbose_name='Пользователь', to=User, on_delete=models.CASCADE,
+                             related_name='task_comments')
     date = models.DateTimeField(verbose_name='Дата и время', auto_now_add=True)
     body = models.TextField(verbose_name='Содержание')
 
