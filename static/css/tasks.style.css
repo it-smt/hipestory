@@ -8,6 +8,11 @@
     margin: 20px 0 0 0;
 }
 
+.content__empty {
+    align-self: flex-start;
+    margin: 20px 0 0 0;
+}
+
 .card {
     max-width: 900px;
     width: 100%;
@@ -29,6 +34,12 @@
 .card__text {
     padding: 15px 20px;
     line-height: 150%;
+}
+
+.card__author {
+    padding: 0 20px 15px 20px;
+    color: #7a7a7a;
+    font-style: italic;
 }
 
 .card__button {

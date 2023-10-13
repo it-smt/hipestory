@@ -338,6 +338,7 @@ hr {
     padding: 20px;
     border-radius: 10px;
     border: 1.5px solid #000;
+    line-height: 145%;
     margin: 0 0 20px 0;
 }
 
@@ -347,7 +348,7 @@ hr {
     border-color: #196816;
 }
 
-.alert-danger {
+.alert-error {
     background-color: #ffe5e5;
     color: #960000;
     border-color: #960000;

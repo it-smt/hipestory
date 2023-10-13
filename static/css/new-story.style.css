@@ -22,8 +22,10 @@
 .form__input {
 	display: block;
 	min-width: 100%;
+	max-width: 100%;
 	background-color: #cde7f3ce;
 	border-radius: 10px;
+	resize: none;
 	padding: 10px 15px;
 	font-size: 16px;
 }
