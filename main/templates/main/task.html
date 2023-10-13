@@ -29,6 +29,7 @@
             {% endfor %}
         </p>
     </div>
+    <p class="task__author">Автор: {{ task.author.username }}</p>
     <div class="content__comments comments">
         <h2 class="comments__title">Ответы</h2>
         <hr>
@@ -44,6 +45,7 @@
                 <div class="comments__comment comment">
                     <div class="comment__user-info"><span
                             class="comment__username"><img src="
+
 
                             {% if comment.user.avatar %}{{ comment.user.avatar.url }}{% else %}{% static 'img/profile/default-avatar.png' %}{% endif %}"
                                                            alt="">{{ comment.user.username }}</span><span
