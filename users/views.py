@@ -47,6 +47,10 @@ def add_avatar(request):
     if form.is_valid():
         avatar = form.files.get('avatar', '')
         if avatar:
+            ext = avatar.name.split('.')[1].lower()
+            if ext not in ['jpg', 'jpeg', 'png']:
+                messages.error(request, 'Ошибка, неверный формат файла! (допустимые форматы файлов: PNG, JPEG, JPG)')
+                return redirect('users:change_avatar')
             user = request.user
             avatar.name = f'{user.username}.png'
             user.avatar = avatar
@@ -54,6 +58,7 @@ def add_avatar(request):
             messages.success(request, 'Аватарка успешно изменена!')
             return redirect('users:profile')
         return redirect('users:change_avatar')
+    messages.error(request, 'Вы не выбрали ни одного файла!')
     return redirect('users:change_avatar')
 
 
@@ -66,10 +71,11 @@ def delete_avatar(request):
     return redirect('users:profile')
 
 
-class UserLoginView(LoginView):
+class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = UserLoginForm
     template_name = 'users/login.html'
     next_page = reverse_lazy('users:profile')
+    success_message = 'Вы успешно вошли!'
 
 
 class UserRegisterView(SuccessMessageMixin, CreateView):
